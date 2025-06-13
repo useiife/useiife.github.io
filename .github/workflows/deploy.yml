@@ -1,0 +1,40 @@
+name: deploy
+
+on:
+  # Deployment is triggered whenever a push is made to the master branch.
+  push:
+    branches: [master]
+  # Manually trigger deployment
+  workflow_dispatch:
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # "Last updated time" and other git log-related information require fetching all commit records.
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+      # Run the build script
+      - name: Build VuePress site
+        run: npm run build
+
+      # @see https://github.com/crazy-max/ghaction-github-pages
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: gh-pages
+          build_dir: docs/.vuepress/dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}

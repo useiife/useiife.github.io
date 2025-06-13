@@ -1,0 +1,30 @@
+{
+  "name": "docs",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "useIIFE Document",
+  "homepage": "https://useiife.lufuhu.com",
+  "author": {
+    "name": "lufuhu",
+    "email": "useiife@lufuhu.com",
+    "url": "https://www.lufuhu.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "^20.6.0 || >=22.0.0"
+  },
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "dev-clean": "vuepress dev docs --clean-cache --clean-temp",
+    "build": "vuepress build docs --clean-cache --clean-temp",
+    "vp-update": "npx vp-update"
+  },
+  "devDependencies": {
+    "@vuepress/bundler-vite": "2.0.0-rc.23",
+    "sass-embedded": "^1.89.1",
+    "typescript": "^5.8.3",
+    "vue": "^3.5.16",
+    "vuepress": "2.0.0-rc.23",
+    "vuepress-theme-plume": "1.0.0-rc.153"
+  }
+}
